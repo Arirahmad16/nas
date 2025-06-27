@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify Mini Player</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #121212;
+        color: #fff;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      h3 {
+        color: #1db954;
+      }
+
+      .list-group-item {
+        border: none;
+        border-bottom: 1px solid #2a2a2a;
+      }
+
+      .list-group-item:hover {
+        background-color: #181818;
+      }
+
+      .mini-player {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: -100px;
+        background-color: #282828;
+        padding: 12px 16px;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 999;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.6);
+        transition: bottom 0.4s ease;
+      }
+
+      .mini-player.show {
+        display: flex;
+        bottom: 0;
+      }
+
+      .mini-player img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 6px;
+        margin-right: 12px;
+      }
+
+      .song-info {
+        flex: 1;
+        overflow: hidden;
+      }
+
+      .song-title {
+        font-size: 0.95rem;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .song-artist {
+        font-size: 0.8rem;
+        color: #b3b3b3;
+      }
+
+      .controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      audio {
+        display: none;
+      }
+
+      .btn-x {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        color: #fff;
+      }
+
+      .btn-x:hover {
+        color: red;
+      }
+
+      .btn-green {
+        background-color: #1db954;
+        border: none;
+        color: #fff;
+      }
+
+      .btn-green:hover {
+        background-color: #1ed760;
+      }
+
+      .back-button-container {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Tombol Kembali -->
+    <div class="back-button-container">
+      <button class="btn btn-success rounded-pill px-3 py-1" onclick="goBack()">
+        ⟵ Kembali
+      </button>
+    </div>
+
+    <div class="container py-5 mt-5">
+      <h3 class="text-center mb-4">Spotify Mini Player</h3>
+
+      <div class="list-group">
+        <button
+          class="list-group-item list-group-item-action bg-dark text-white"
+          onclick="playSong('slut.mp3', 'Slut! (Taylor\'s Version)', 'Taylor Swift', 'taylor.jpg')"
+        >
+          Slut! (Taylor's Version)
+        </button>
+        <button
+          class="list-group-item list-group-item-action bg-dark text-white"
+          onclick="playSong('niki.mp3', 'You\'ll Be in My Heart', 'NIKI', 'niki.jpg')"
+        >
+          You'll Be in My Heart
+        </button>
+        <button
+          class="list-group-item list-group-item-action bg-dark text-white"
+          onclick="playSong('kupu_kupu.mp3', 'Kupu Kupu', 'Melly Goeslaw', 'kupu.jpg')"
+        >
+          Kupu Kupu
+        </button>
+        <button
+          class="list-group-item list-group-item-action bg-dark text-white"
+          onclick="playSong('sempurna.mp3', 'Sempurna', 'Andra & The Backbone', 'sempurna.jpg')"
+        >
+          Sempurna
+        </button>
+        <button
+          class="list-group-item list-group-item-action bg-dark text-white"
+          onclick="playSong('to_the_bone.mp3', 'To The Bone', 'Pamungkas', 'bone.jpg')"
+        >
+          To The Bone
+        </button>
+      </div>
+    </div>
+
+    <!-- Mini Player -->
+    <div id="miniPlayer" class="mini-player">
+      <img id="miniImage" src="" alt="Cover" />
+      <div class="song-info">
+        <div id="miniTitle" class="song-title">Judul Lagu</div>
+        <div id="miniArtist" class="song-artist">Nama Artis</div>
+      </div>
+      <div class="controls">
+        <button class="btn btn-green btn-sm" onclick="togglePlay()">⏯</button>
+        <button class="btn-x" onclick="closeMiniPlayer()">✕</button>
+      </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+
+    <script>
+      const audio = document.getElementById("audioPlayer");
+      const miniPlayer = document.getElementById("miniPlayer");
+      const miniImage = document.getElementById("miniImage");
+      const miniTitle = document.getElementById("miniTitle");
+      const miniArtist = document.getElementById("miniArtist");
+
+      function playSong(file, title, artist, cover) {
+        audio.src = file;
+        audio.play();
+
+        miniImage.src = cover;
+        miniTitle.textContent = title;
+        miniArtist.textContent = artist;
+        miniPlayer.classList.add("show");
+      }
+
+      function togglePlay() {
+        if (audio.paused) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      }
+
+      function closeMiniPlayer() {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.src = "";
+        miniPlayer.classList.remove("show");
+      }
+
+      audio.addEventListener("ended", closeMiniPlayer);
+
+      function goBack() {
+        window.location.href = "screen.html";
+      }
+    </script>
+  </body>
+</html>

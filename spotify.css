@@ -1,0 +1,101 @@
+body {
+  background-color: #121212;
+  color: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h3 {
+  color: #1db954;
+}
+
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.list-group-item:hover {
+  background-color: #181818;
+}
+
+.mini-player {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -100px;
+  background-color: #282828;
+  padding: 12px 16px;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 999;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.6);
+  transition: bottom 0.4s ease;
+}
+
+.mini-player.show {
+  display: flex;
+  bottom: 0;
+}
+
+.mini-player img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 12px;
+}
+
+.song-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.song-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.song-artist {
+  font-size: 0.8rem;
+  color: #b3b3b3;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+audio {
+  display: none;
+}
+
+.btn-x {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.btn-x:hover {
+  color: red;
+}
+
+.btn-green {
+  background-color: #1db954;
+  border: none;
+  color: #fff;
+}
+
+.btn-green:hover {
+  background-color: #1ed760;
+}
+
+.back-button-container {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}

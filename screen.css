@@ -1,0 +1,75 @@
+body {
+  background-image: url("wpp.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+#tanggal {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #eee;
+}
+
+#jam {
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+.apps-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 50px; /* Tambahkan jarak dari atas */
+}
+
+.app-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.app-icon img {
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+}
+
+.app-icon .small {
+  margin-top: 5px;
+  font-size: 0.75rem;
+  color: white;
+}
+
+.app-icon:hover {
+  transform: scale(1.1);
+}
+.btn-power {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  margin-bottom: 35px;
+}
+
+.power-label {
+  font-size: 12px;
+  margin-top: 4px;
+  color: white;
+}
+
+.btn-power:hover {
+  background-color: rgba(255, 0, 0, 0.7);
+}
